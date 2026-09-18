@@ -12,7 +12,8 @@ export class ApiError extends Error {
   }
 }
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+const rawBaseUrl = import.meta.env.VITE_API_BASE_URL || '/api';
+const BASE_URL = rawBaseUrl.endsWith('/') ? rawBaseUrl.slice(0, -1) : rawBaseUrl;
 
 interface RequestOptions extends RequestInit {
   params?: Record<string, string | undefined>;
@@ -21,7 +22,8 @@ interface RequestOptions extends RequestInit {
 export async function request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
   const { params, headers, ...customConfig } = options;
 
-  let url = `${BASE_URL}${endpoint}`;
+  const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+  let url = `${BASE_URL}${normalizedEndpoint}`;
   if (params) {
     const searchParams = new URLSearchParams();
     Object.entries(params).forEach(([key, value]) => {
