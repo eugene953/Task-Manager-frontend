@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useToast } from '../../context/ToastContext';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
-import { CheckSquare, Eye, EyeOff, Lock, Mail, Sparkles } from 'lucide-react';
+import { CheckSquare, Eye, EyeOff, Lock, Mail} from 'lucide-react';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -49,11 +49,11 @@ export const Login: React.FC = () => {
     }
   };
 
-  const handleFillDemo = () => {
-    setEmail('demo@taskflow.dev');
-    setPassword('Password123!');
-    setFormErrors({});
-  };
+  // const handleFillDemo = () => {
+  //   setEmail('demo@taskflow.dev');
+  //   setPassword('Password123!');
+  //   setFormErrors({});
+  // };
 
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center px-4 py-12 selection:bg-indigo-500/30 selection:text-indigo-300 relative overflow-hidden">
